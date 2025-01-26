@@ -7,13 +7,10 @@ class Solution {
         char[] n=t.toCharArray();
         Arrays.sort(f);
         Arrays.sort(n);
-        if(s.length()==t.length()){
-            for(int i=0; i<s.length(); i++){
-                if(f[i]!=n[i]){
-                    return false;
-                }
-            }
+        if(Arrays.equals(f,n)){
+            return true;
+        }else{
+            return false;
         }
-        return true;
     }
 }
