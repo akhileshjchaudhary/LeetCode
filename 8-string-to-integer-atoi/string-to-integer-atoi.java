@@ -2,12 +2,10 @@ import java.util.HashMap;
 
 class Solution {
     public int myAtoi(String s) {
-        s = s.trim(); // Step 1: Remove leading whitespace
+        s = s.trim(); // Remove leading and trailing whitespaces
+        if (s.isEmpty()) return 0; // Handle empty strings
 
-        if (s.isEmpty()) {
-            return 0; // Handle empty string
-        }
-
+        // Create a HashMap to map digits as characters to their integer values
         HashMap<Character, Integer> map = new HashMap<>();
         map.put('0', 0);
         map.put('1', 1);
@@ -24,7 +22,7 @@ class Solution {
         boolean isNegative = false;
         int i = 0;
 
-        // Step 2: Handle the sign
+        // Handle signs
         if (s.charAt(0) == '-') {
             isNegative = true;
             i++;
@@ -32,25 +30,28 @@ class Solution {
             i++;
         }
 
-        // Step 3: Process characters and build the number
+        // Convert characters to numbers
         for (; i < s.length(); i++) {
             char c = s.charAt(i);
 
-            if (!map.containsKey(c)) {
-                break; // Stop on encountering a non-digit character
-            }
+            // Check if the character is a digit using the HashMap
+            if (!map.containsKey(c)) break;
 
             int digit = map.get(c);
 
-            // Step 4: Check for overflow
+            // Check for overflow/underflow
             if (res > (Integer.MAX_VALUE - digit) / 10) {
-                return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                if (isNegative) {
+                    return Integer.MIN_VALUE;
+                } else {
+                    return Integer.MAX_VALUE;
+                }
             }
 
             res = res * 10 + digit;
         }
 
-        // Step 5: Apply the sign
+        // Apply the sign
         if (isNegative) {
             res = -res;
         }
