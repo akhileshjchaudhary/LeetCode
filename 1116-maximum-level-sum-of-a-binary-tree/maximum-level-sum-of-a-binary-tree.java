@@ -33,7 +33,9 @@ class Solution {
                     currentLevel = level;
                 }
 
-                if(!q.isEmpty()){
+                if(q.isEmpty()){
+                    return currentLevel;
+                }else{
                     q.add(null);
                 }
                 
