@@ -1,21 +1,36 @@
 class Solution {
-    public List<List<String>> groupAnagrams(String[] nums) {
-        Map<String, List<String>> map = new HashMap<>();
-        for(int i=0; i<nums.length; i++){
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> main = new ArrayList<>();
 
-            String currStr = nums[i];
-            char[] chr = currStr.toCharArray();
-            Arrays.sort(chr);
-            String sortedStr = new String(chr);
-
-            if(map.containsKey(sortedStr)){
-                map.get(sortedStr).add(currStr);
-            }else{
-                List<String> listStr = new ArrayList<>();
-                listStr.add(currStr);
-                map.put(sortedStr, listStr);
-            }
+        List<String> prevMain = new ArrayList<>();
+        for(int i=0; i<strs.length; i++){
+            prevMain.add(strs[i]);
         }
-        return new ArrayList<>(map.values());
+
+        List<String> list = new ArrayList<>();
+        for(int i=0; i<strs.length; i++){
+            char[] arr = strs[i].toCharArray();
+            Arrays.sort(arr);
+            String str = String.valueOf(arr);
+            list.add(str);
+        }
+
+        int n = prevMain.size();
+
+        for(int i=0; i<n; i++){
+            List<String> inner = new ArrayList<>();
+            inner.add(prevMain.get(i));
+            for(int j=i+1; j<n; j++){
+                if(list.get(i).equals(list.get(j))){
+                    inner.add(prevMain.get(j));
+                    list.remove(j);
+                    prevMain.remove(j);
+                    n=prevMain.size();
+                    j--;
+                }
+            }
+            main.add(inner);
+        }
+        return main;
     }
 }
