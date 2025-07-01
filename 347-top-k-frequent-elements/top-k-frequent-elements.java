@@ -5,30 +5,31 @@ class Solution {
             if(map.containsKey(nums[i])){
                 map.put(nums[i], map.get(nums[i])+1);
             }else{
-                map.put(nums[i],1);
+                map.put(nums[i], 1);
             }
+
         }
 
         Set<Integer> keys = map.keySet();
 
+        int arr[]=new int[k]; int i = 0;
+
         int max = 0;
-
-        int i = 0; int ans[]=new int[k];
-
         while(k!=0){
-            Integer keyInd = 0;
+            
+            Integer indx = 0;
             for(Integer key : keys){
+                 
                 if(map.get(key)>max){
                     max = map.get(key);
-                    keyInd = key;
+                    indx = key;
                 }
             }
-            k--;
+            arr[i] = indx;
+            i++;k--;
+            map.remove(indx);
             max = 0;
-            ans[i]=keyInd;
-            i++;
-            map.remove(keyInd);
         }
-        return ans;
+        return arr;
     }
 }
