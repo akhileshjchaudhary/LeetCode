@@ -8,8 +8,8 @@ class Solution {
 
         boolean flag = false;
         for(int i=0; i<nums.length; i++){
-            if(max1 < nums[i]){
-                max1 = nums[i];
+            if(max < nums[i]){
+                max = nums[i];
             }
             if(nums[i]>=0){
                 flag = true;
@@ -20,7 +20,7 @@ class Solution {
         if(flag == true){
             max = Integer.MIN_VALUE;
         }else{
-            return max1;
+            return max;
         }
 
         for(int i=0; i<nums.length; i++){
