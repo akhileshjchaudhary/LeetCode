@@ -9,7 +9,7 @@ class Solution {
                 int sum = nums[i]+ nums[first] + nums[last];
                 if(sum == 0){
                     ArrayList<Integer> list = new ArrayList<>();
-                    Collections.sort(list); list.add(nums[i]); list.add(nums[first]); list.add(nums[last]);
+                    list.add(nums[i]); list.add(nums[first]); list.add(nums[last]);
                     if(!(mainList.contains(list))){
                         mainList.add(new ArrayList<>(Arrays.asList(nums[i], nums[first], nums[last])));
                     }
