@@ -9,7 +9,7 @@ class Solution {
         max=Math.max(max,avg);
         int j=k;
         for( ; j<nums.length; ){
-            sum=sum-nums[i];
+            sum=sum-nums[j-k];
             i++;
 
             sum=sum+nums[j];
